@@ -4,6 +4,7 @@ from feature_extractor import FeatureExtractor
 from datetime import datetime
 from flask import Flask, request, render_template
 from pathlib import Path
+from pyngrok import ngrok
 
 app = Flask(__name__)
 
