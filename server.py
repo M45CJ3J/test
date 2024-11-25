@@ -4,8 +4,6 @@ from feature_extractor import FeatureExtractor
 from datetime import datetime
 from flask import Flask, request, render_template
 from pathlib import Path
-from pyngrok import ngrok
-import threading
 
 app = Flask(__name__)
 
@@ -42,16 +40,5 @@ def index():
         return render_template('index.html')
 
 
-# Function to run the Flask app and expose it via ngrok
-def run_with_ngrok():
-    # Start ngrok tunnel for the Flask app
-    public_url = ngrok.connect(5000)
-    print(f" * ngrok tunnel \"{public_url}\" -> \"http://127.0.0.1:5000\"")
-
-    # Run the Flask app
-    app.run(debug=True, host="0.0.0.0", port=5000)
-
-# Run the app in a separate thread to allow ngrok to start and keep Colab interactive
-if __name__ == "__main__":
-    thread = threading.Thread(target=run_with_ngrok)
-    thread.start()
+if __name__=="__main__":
+   app.run(host="0.0.0.0",debug=True,port=9600)
